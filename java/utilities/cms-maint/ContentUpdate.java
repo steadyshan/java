@@ -22,9 +22,12 @@ import java.util.regex.Pattern;
  * @author www.codejava.net
  *
  */
+@CrossOrigin(origins = "http://localhost:4200")
 public class ContentUpdate {
  
     public static void processMenuTree(String menuTreeName, String category, String parentCategory,String newDate ) {
+         menuTreeName = "/Users/shantanu/Documents/GitHub/fullstack/spring-boot/shan-cms-maintain/content_list_crud/src/main/java/com/cmslistadmin/content_list_crud/business/test-data/menu-tree.ts" ;
+        
         ArrayList<String> processedLines = readAndEditMenuTree( menuTreeName,  category,  parentCategory, newDate);
         updateMenuTree(menuTreeName.replace(".ts","1.ts"), processedLines);
     }
