@@ -1,0 +1,67 @@
+<table>
+    <tr>
+        <td>
+            <ul>
+                <li *ngFor="let imageFile of ImageFiles">{{imageFile}}</li>
+            </ul><br/>
+        </td>
+        <tD>
+            <div>
+                <form [formGroup]="imageListJSON" (ngSubmit)="onSubmit()">
+                    <div>
+                    <label> Canvass Size</label><select formControlName="canvassSize">
+                        <option *ngFor="let canvassSize of canvassSizes" >{{canvassSize}}</option>
+                
+                    </select>
+                </div>
+                <div>
+                    <label> Sketch Type</label><select formControlName="content">
+                        <option *ngFor="let contentType of contentTypes">{{contentType}}</option>
+                    </select>
+                </div>
+                <div>  <label> Date Uploaded</label><input formControlName="dateUploaded" />
+                
+                </div>
+                <div>  <label> Rating</label><input formControlName="rating" />
+                
+                </div>
+                <div>  <label> Rating Year</label><input formControlName="ratingYear" />
+                
+                </div>
+                <div>  <label> Duplicate</label><input type="checkbox" (click)="dup()"  [(ngModel)]="duplicateImage" >
+                    {{duplicateImage}}
+                </div>
+                </form>
+            </div>
+        </tD>
+        <td>
+        File (version): <textarea  *ngIf="duplicateImage==false"[value]="ImageFiles[currentIteration]"></textarea>   
+        <input readonly  *ngIf="duplicateImage==true"[value]="ImageFiles[currentIteration]"> 
+        Description:<br/>
+        <app-multiline *ngIf="currentIteration < totalIterations" [entityName]= "ImageFiles[currentIteration]" (multiTextDone)="getIterationnMutipleText($event)"></app-multiline>
+         
+        </td>
+        <td>
+        <input type="checkbox" checked [(ngModel)]="showEvolution" >{{showEvolution}}
+        <div  *ngIf="showEvolution">
+        <label> Evolution year</label><select formControlName="evolutionSequenceList">
+            <option *ngFor="let evolutionSequence of evolutionSequences" value="evolutionSequence.value">{{evolutionSequence.label}}</option>
+        </select>
+        <input formControlName="evolutionDate" />
+         <app-multiline [entityName]= "ImageFiles[currentIteration]" (multiTextDone)="getEvolutionMutipleText($event)"></app-multiline>
+        </div>   
+        </td>
+        <td>
+            {{FormValues}}<br/>
+            #############################
+            <ul>
+                <li *ngFor="let listingLine of  ListingContent">{{listingLine}}</li>
+            </ul>
+            <button type="submit" (click)="onSubmit()">S</button>
+        </td>
+    </tr>
+</table>
+
+<!-- app-multiline (multiTextDone)="getEvolutionMutipleText($event)"></app-multiline>-->
+
+

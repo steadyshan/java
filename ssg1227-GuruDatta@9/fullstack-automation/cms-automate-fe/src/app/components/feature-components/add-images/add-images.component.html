@@ -1,0 +1,38 @@
+<div class="outerdiv">
+    <div  style="overflow-y: scroll;background-color: aqua;">
+        <button [disabled]="isPostDataReady()" (click)="postJSONUpdate()">Submit</button>
+        <button (click)="reset()">RESET</button>
+        <ul *ngIf="imageList != null && imageList.length > 0">
+            <li *ngFor="let imageFile of imageList">{{imageFile}}</li>
+        </ul>
+        <br/>
+        {{jsonListingFile}}
+        <ul  *ngIf="jsonListing != null && jsonListing.length > 0">
+            <li *ngFor="let jj of jsonListing">{{jj}}</li>
+        </ul>
+    </div>
+    <div>
+        <button (click)="displayToggle('imageMoveRow', false)">Hide Image Move</button>
+        <button (click)="displayToggle('imageMoveRow')">Show Image Move</button>
+        <div >
+            <app-multiline [passedTextList]= "albumEntryTextList" (multiTextDone)="addAlbumEntry($event)"></app-multiline>
+        </div>
+    </div>
+    <div id="imageMove" [ngStyle]="ComponentDivStyle"   >
+        <app-image-move (imageVersionsDone)="passImageFolders($event)"></app-image-move>
+    </div>
+  
+
+<div  id="compileJSON" [ngStyle]="ComponentDivStyle" >
+    <app-compile-json-content [listingContent]="jsonListing" *ngIf="imagesMoved==true" (jsonReady)="jsonToUpdate($event)" [imageFileList]="imageList"></app-compile-json-content>
+    </div>
+    <div  [ngStyle]="ComponentDivStyle" >
+        <app-set-list-folder (configFileFound)="jsonFileToUpdate($event)"></app-set-list-folder>
+        </div>
+
+<div>
+
+    <button (click)="displayToggle('compileJSON', false)">Hide JSON generator</button>
+    <button (click)="displayToggle('compileJSON')">Show  JSON generator</button>
+</div>
+</div>

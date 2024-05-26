@@ -1,0 +1,101 @@
+<div>
+    <label for="destFolderRoot">Get Destination Folder:</label>
+    <input type="checkbox" [checked]="religious">
+    <input class="long-type " type="text" [(ngModel)]="imageFolderPrefix" />
+
+</div>
+<form [formGroup]="newImageSet" (ngSubmit)="onSubmit()">
+   <h3> Automation of Uploading new images to hosting site</h3>
+   <h5>Highly 'non meta' fixed lengths as of {{FormattedDate}}; initial POC to see if the files get updated smoothly</h5>
+    <div>
+        <label for="sourceFolderFile1">Source Folder </label>
+        <input class="long-type " type="text" formControlName="sourceFolderFile1" />
+    </div>
+    <div>
+        <label for="sourceFolderFile1">Destination:</label>
+        <input class="long-type " type="text" formControlName="destinationFolderFile1" />
+    </div>
+    <div>
+        <label for="imageTab1">TAB (Category)</label>
+        <select type="Select" formControlName="imageTab1" (change)="getNewMenu(1)">
+            <option *ngFor="let iTab of imageTabs" [ngValue]="iTab.name">{{iTab.name}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="imageMenu">Menu</label>
+        <select type="Select" formControlName="imageMenu1">
+            <option *ngFor="let iMenu of selectedImageMenu" [ngValue]="iMenu">{{iMenu}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="imageTab1">Canvass Size</label>
+        <select type="Select" formControlName="imageCanvass1" >
+            <option *ngFor="let canvassSize of canvassSizes" [ngValue]="canvassSize">{{canvassSize}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="imageTab1">Content Type</label>
+        <select type="Select" formControlName="imageCanvassContent1" >
+            <option *ngFor="let contentType of contentTypes" [ngValue]="contentType">{{contentType}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="imageTab1">Final file Name (no path)</label>
+        <input   type="text" formControlName="fullFileName1" />
+    </div>
+    <button type="submit">Submit</button>
+    
+   
+    <!-- 
+        sourceFolderFile1: ['/Users/shantanu/Downloads'],
+    destinationFolderFile1: ['/Users/shantanu/Downloads'],
+    imageTab1: ['Ganesh'],
+    imageMenu1: ['ganesh-gte-Q1-2023'],
+    imageCanvass1: ['A4'],
+    imageCanvassContent1: ['A3'],
+    fullFileName1:[''],
+    description1:[''],
+    evolution1: ['ddd'],
+    evolutionDate1: ['06-22-2023'],
+    evolutionSequence1: [this.lookups.currentEvolutionSequence],
+    dateUploaded:['06-22-2023'],
+    rating1:[1],
+    ratingYear1:[2023],
+    iteration1FullFileName1:[''],
+    iteration1description1:[''],
+    iteration2FullFileName1:[''],
+    iteration2description1:[''],
+    iteration3FullFileName1:[''],
+    iteration3description1:[''],
+    -->
+    <!--div *ngFor="let iTab of imageUploads;let i=index" >
+        <div>
+            <label for="sourceFolderFile{{i+1}}">Source Folder </label>
+            <input type="text" formControlName="sourceFolderFile{{i+1}}" />
+        </div>
+        <div>
+            <label for="imageTab{{i+1}}">TAB (Category)</label>
+            <select type="Select" formControlName="imageTab{{i+1}}" (change)="getNewMenu(i+1)">
+                <option *ngFor="let iTab of imageTabs" [ngValue]="iTab.name">{{iTab.name}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="imageMenu">Menu</label>
+            <select type="Select" formControlName="imageMenu{{i+1}}">
+                <option *ngFor="let iMenu of selectedImageMenu" [ngValue]="iMenu">{{iMenu}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <form formGroupName="evolutionStats">
+            <div>
+                <label for="evolutuonDate">Date of Evolution</label><input type="text" formControlName="evolutuonDate">
+            </div>
+        </form>
+    </div>
+
+   -->
+
+</form>
+{{FormValues}}

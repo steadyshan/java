@@ -1,0 +1,10 @@
+
+    <label for="subject">Subject:</label> <input type="text" id="subject" [formControl]="subject">
+    <form [formGroup]="personalDetails" (ngSubmit)="onSubmit()">
+        <label for="firstName">First Name:</label><input type="text" id="firstName" formControlName="firstName">
+        <label for="lastName">Last Name:</label><input type="text" id="lastName" formControlName="lastName">
+    </form>
+    <input type="text" id="interval" [formControl]="interval"><button id="stop" (click)="startUpdate()">Start</button>
+    <br/>{{PersonalDetails}}<br/>
+    <button type="submit" >Submit</button>
+

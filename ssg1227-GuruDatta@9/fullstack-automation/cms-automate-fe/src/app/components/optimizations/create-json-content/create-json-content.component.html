@@ -1,0 +1,38 @@
+<H3>Config File Folders:</H3>
+<div>
+    <label >Config File root:</label>   <label >{{rootImageFolder}}</label>
+</div>
+<label >Set Destination Folders:</label>
+<div>
+<label>Level1</label>
+<select id="level1" type="Select" (change)="selectImageListFile($event,2)" >
+    <option *ngFor="let level1File of level1Files" [value]="level1File.replace('(file)','')">{{level1File.replace('(file)','')}}</option>
+</select>
+</div>
+<label></label>
+<ul>
+    <li *ngFor="let imageFile of imageFiles" >{{imageFile}}</li>
+
+</ul>
+<div *ngFor="let imageFile of imageFiles; let i = index" >
+    <app-multiline [entityName]= "imageFile" (multiTextDone)="getIterationnMutipleText($event, i)"></app-multiline>
+</div>
+<div>
+Evolution: <input type="checkbox" [(ngModel)]="showEvolution"> 
+
+<app-multiline (multiTextDone)="getEvolutionMutipleText($event)"></app-multiline>
+</div>
+
+<form [formGroup]="imageListJSON" (ngSubmit)="onSubmit()">
+    <select formControlName="imageCanvassSize">
+        <option *ngFor="let canvassSize of canvassSizes" >{{canvassSize}}</option>
+
+    </select>
+    <select formControlName="imageSketchType">
+        <option *ngFor="let contentType of contentTypes">{{contentType}}</option>
+    </select>
+    <input readonly formControlName="evolution" />
+</form>
+{{level1Select}}
+
+{{FormValues}}

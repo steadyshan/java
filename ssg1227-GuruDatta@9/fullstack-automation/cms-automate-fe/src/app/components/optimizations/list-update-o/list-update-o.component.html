@@ -1,0 +1,45 @@
+<app-image-move (imageVersionsDone)="passImageFolders($event)"></app-image-move>
+
+<app-create-json-content  [imageFiles]="imageFiles"></app-create-json-content>
+<button   style="display:none"  (click)="addListing()">Add Listing</button>
+<div style="display:none">
+    
+    <H3>Image Folders:</H3>
+    <div>
+        <label >Source Folder:</label>   <label >{{rootImageSourceFolder}}</label>
+    </div>
+    <label >Set Destination Folders:</label>
+    <div>
+    <label>Level1</label>
+    <select id="level1" type="Select" (change)="getSubFolder($event,2)" >
+        <option *ngFor="let level1File of level1Files" [disabled]="level1File.indexOf('(file)') >= 0">{{level1File.replace('(file)','')}}</option>
+    </select>
+    </div>
+    <div> 
+    <label>Level2</label>
+    <select id="level2" type="Select" (change)="getSubFolder($event,3)" >
+        <option *ngFor="let level2File of level2Files" [disabled]="level2File.indexOf('(file)') >= 0">{{level2File.replace('(file)','')}}</option>
+    </select>
+    </div>  
+    <div>
+        <label>Level3</label>
+        <select id="level3" type="Select" (change)="getSubFolder($event,4)" >
+            <option *ngFor="let level3File of level3Files" [disabled]="level3File.indexOf('(file)') >= 0">{{level3File.replace('(file)','')}}</option>
+        </select>
+    </div>  
+   
+    <div>
+        <label>Level4</label>
+        <select id="level3" type="Select" (change)="getSubFolder($event,5)" >
+            <option *ngFor="let level3File of level3Files" [disabled]="level3File.indexOf('(file)') >= 0">{{level3File.replace('(file)','')}}</option>
+        </select>
+    </div>  
+    <div>
+        <label>Level3</label>
+        <select id="level3" type="Select" (change)="getSubFolder($event,4)" >
+            <option *ngFor="let level3File of level3Files" [disabled]="level3File.indexOf('(file)') >= 0">{{level3File.replace('(file)','')}}</option>
+        </select>
+    </div>  
+ 
+    {{this.currentParentFolder}}.. {{level1Select}}
+</div>

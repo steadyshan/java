@@ -1,0 +1,25 @@
+form {
+    margin: 5px 15px;
+    border: 2px inset darkcyan;
+    background-color: aliceblue;
+    padding:  14px;
+    max-width: 1800px;
+    font-size: larger;
+}
+
+div form {
+    margin: 10px 30px;
+    border: 2px solid blue;
+    padding:  14px;
+    max-width: 700px;
+}
+input, select, label {
+    min-width: 300px;
+    font-size: larger;
+    height:30px;
+    margin-bottom: 7px;
+   
+}
+.long-type {
+    min-width: 1500px;
+}

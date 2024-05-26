@@ -1,0 +1,53 @@
+<div>
+    <!---  later to add from reusables
+    <app-folder-tree-expand [rootFolder]="destinationStart"></app-folder-tree-expand>
+    -->
+    <H5>Moving the images:</H5>
+    <div>
+        <label>Folders -- Source:</label>   <label >{{rootImageSourceFolder}}</label>
+    </div>
+    <div>
+        <label>Destination:</label>{{currentParentFolder}}..
+    </div>
+    <label >Set Destination Folders:</label>
+    <div>
+    <label>Level1</label>
+    <select id="level1" type="Select" (change)="getImageSubFolder($event,2)" >
+        <option *ngFor="let level1File of level1Files" [disabled]="level1File.indexOf('(file)') >= 0">{{level1File.replace('(file)','')}}</option>
+    </select>
+    </div>
+    <div> 
+    <label>Level2</label>
+    <select id="level2" type="Select" (change)="getImageSubFolder($event,3)" >
+        <option *ngFor="let level2File of level2Files" [disabled]="level2File.indexOf('(file)') >= 0">{{level2File.replace('(file)','')}}</option>
+    </select>
+    </div>  
+    <div>
+        <label>Level3</label>
+        <select id="level3" type="Select" (change)="getImageSubFolder($event,4)" >
+            <option *ngFor="let level3File of level3Files" [disabled]="level3File.indexOf('(file)') >= 0">{{level3File.replace('(file)','')}}</option>
+        </select>
+    </div>
+    <div>
+        <label>Level4</label>
+        <select id="level3" type="Select" (change)="getImageSubFolder($event,5)" >
+            <option *ngFor="let level4File of level4Files" [disabled]="level4File.indexOf('(file)') >= 0">{{level4File.replace('(file)','')}}</option>
+        </select>
+    </div>
+    <div>
+        <label>FileName</label>
+       <input type="text" [(ngModel)]="imageFileName" #ctrl="ngModel">
+    </div>  
+    <div>
+        <label>DestinationFileName</label>
+       <input type="text" [(ngModel)]="destImageFileName" #ctrl="ngModel">
+    </div>  
+    <button click="alert('hi')" (click)="moveFile()">Move</button>
+    <button (click)="moveFileReverse()">Revert</button>
+    <button (click)="moveFileComplete()">Done</button> <label> use imageroot var</label><input type="checkbox" checked (click)="imgR()"  [(ngModel)]="useImageRoot" >
+    {{useImageRoot}}
+    {{currentWebAppParentFolder}}
+    <ul>
+        <li *ngFor="let imageFile of imageFiles">{{imageFile}}</li>
+    </ul>   
+</div>

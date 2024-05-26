@@ -1,0 +1,19 @@
+input, select, label {
+    min-width: 300px;
+    font-size: larger;
+    height:30px;
+    margin-bottom: 7px;
+   
+}
+/*
+div {
+    height: 215px;
+}
+*/
+td {
+    height: 218px;
+    border:3px solid grey;
+    margin:2px;
+    padding:5px;
+    border-radius: 5px;
+}

@@ -1,0 +1,42 @@
+<form [formGroup]="newImage">
+    <div>
+        <ul class="list-group">
+         <li *ngFor="let post of listsResp" class="list-group-item" >{{post.title}}</li>
+        </ul>
+        <button (click)="startStopToggle()">Start/Stop</button>
+        <button (click)="addList()">Add</button>
+     </div>
+    
+    <div>
+        <label for="imageTab">TAB (Category)</label>
+        <select type="Select" formControlName="imageTab" (change)="getNewMenu()">
+            <option *ngFor="let iTab of imageTabs" [ngValue]="iTab.name">{{iTab.name}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="imageMenu">Menu</label>
+        <select type="Select" formControlName="imageMenu">
+            <option *ngFor="let iMenu of selectedImageMenu" [ngValue]="iMenu">{{iMenu}}</option>
+        </select>
+    </div>
+    <div>
+        <form formGroupName="evolutionStats">
+            <div>
+                <label for="evolutuonDate">Date of Evolution</label><input type="text" formControlName="evolutuonDate">
+            </div>
+        </form>
+    </div>
+
+    <div *ngFor="let alias of Iterations.controls; let i=index">
+        <!-- The repeated alias template -->
+        <form formGroupName="evolutionStats-{{ i }}">
+            <label for="imageTab-{{ i }}">TAB (Category)</label>
+            <select type="Select" formControlName="imageTab-{{ i }}" (change)="getNewMenu()">
+                <option *ngFor="let iTab of imageTabs" [ngValue]="iTab.name">{{iTab.name}}</option>
+            </select>
+            <label for="fullFileName-{{ i }}">Full File Name</label>
+            <input id="fullFileName-{{ i }}" type="text" formControlName="fullFileName">
+        </form>
+      </div>
+   
+</form>

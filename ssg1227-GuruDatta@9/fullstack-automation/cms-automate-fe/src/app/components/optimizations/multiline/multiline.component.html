@@ -1,0 +1,22 @@
+<div style="overflow-y: auto;">
+    <!-- 
+<input type="text" readonly [ngModel]="entityName">
+    -->
+<input [(ngModel)]="textLines[0]" id="text1">
+<input [(ngModel)]="textLines[1]" id="text2">
+<input [(ngModel)]="textLines[2]" id="text3">
+<input [(ngModel)]="textLines[3]" id="text4">
+<input [(ngModel)]="textLines[4]" id="text5">
+<input [(ngModel)]="textLines[5]" id="text6">
+<input [(ngModel)]="textLines[6]" id="text7">
+
+<!-- dynamic doesnt seem to work with ngModel, so hard code as above..
+    will debug <div  *ngFor="let textLine of textLines; let i = index">
+<input 
+            type="text" 
+            [id]="getId(i)"> <br/>
+</div>
+<button (click)="addLine()">Add</button>
+-->
+<button (click)="completed()">Done</button>
+</div>
