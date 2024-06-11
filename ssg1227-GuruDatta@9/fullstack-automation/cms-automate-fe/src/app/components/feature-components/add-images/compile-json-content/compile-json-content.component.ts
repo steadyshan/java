@@ -19,7 +19,8 @@ export class CompileJsonContentComponent implements OnInit {
   /* /Users/shantanu/Documents/GitHub/js-frameworks/Angular_lte_4/shan-cms-template/src/assets/data-and-config/data/religious/ganesh-gte-q1-2023.image.list.ts */
   /* RIGHT NOW config files are only one level deep, so dont need the 'rippling' logic for images */
   lookups: LookupValues = new LookupValues();
-  canvassSizes = this.lookups.canvassSizes ;
+  canvassSizes:string[] = ["select"] ; 
+  canvassMaterials:string[] = ["select"] ; 
   contentTypes = this.lookups.contentTypes ;
   evolutionSequences = this.lookups.evolutionSequences ;
   showEvolution = false ;
@@ -32,12 +33,14 @@ export class CompileJsonContentComponent implements OnInit {
     imageTab: ['Ganesh'],
     imageMenu: ['ganesh-gte-Q1-2023'],
     canvassSize: [''],
+    canvassMaterial: [''],
     evolutionSequenceList:['4'],
     content: [''],
     dateUploaded:[`${this.FormattedDate}`],
     iterations:[[""]],
     iterationString:[""],
     fileName:[""],
+    summaryLabel:[""],
     fileDescription:[""],
     evolution: ['rgererge'],
     evolutionDate: [`${this.FormattedDate}`],
@@ -59,7 +62,10 @@ export class CompileJsonContentComponent implements OnInit {
     this.duplicateImage = !this.duplicateImage ;
    // alert(`${this.duplicateImage}`)
   }
-  constructor(private listService: ListService,  private fb: FormBuilder) { }
+  constructor(private listService: ListService,  private fb: FormBuilder) { 
+    this.canvassSizes.push(...this.lookups.canvassSizes) ;
+    this.canvassMaterials.push(...this.lookups.canvassMaterial) ;
+  }
   /* Iteratively
    1. single dimension form with dynamic text addition for file description 
   */
@@ -90,8 +96,11 @@ export class CompileJsonContentComponent implements OnInit {
 // /Volumes/Macintosh HD-1/Users/SonicUser/Public/reads/Solar Subordination Checklist.pdf
 getIterationnMutipleText(textLines:string[]) {
   let fileName = `fullFileName: \`${this.ImageFiles[this.currentIteration]}\`,`;
+
   let fileDescription = `description: \`<ul>`
   console.log(`Total Iterarions ${this.totalIterations}`);
+  if(textLines.length > 0)
+    this.imageListJSON.controls["summaryLabel"].setValue(textLines[0]);
   textLines.forEach((textLine:string) => {
     if (textLine.trim() !== "") {
       fileDescription = `${fileDescription}<li> ${textLine} </li>`;
@@ -161,6 +170,9 @@ get ListingContent():string[] {
  updateListingContent() {
     this.listingContent= [];
     this.listingContent.push("{") ;
+    if(this.imageListJSON.controls["canvassMaterial"].value?.trim() !== 'select' && this.imageListJSON.controls["canvassMaterial"].value?.trim() !== '' ){
+      this.listingContent.push(`canvassMaterial:  '${this.imageListJSON.controls["canvassMaterial"].value}',`) ;
+    }
     this.listingContent.push(`canvassSize:  '${this.imageListJSON.controls["canvassSize"].value}',`) ;
     this.listingContent.push(`content:  '${this.imageListJSON.controls["content"].value}',`) ;
     this.listingContent.push(`dateUploaded:  '${this.imageListJSON.controls["dateUploaded"].value}',`) ;
@@ -171,6 +183,12 @@ get ListingContent():string[] {
       this.listingContent.push(`evolutionSequence:  ${this.imageListJSON.controls["evolutionSequenceList"].value},`) ;
       this.listingContent.push(`evolutionDate:  '${this.imageListJSON.controls["evolutionDate"].value}',`) ;
     }
+
+    if(this.imageListJSON.controls["summaryLabel"].value?.trim() !== ''){
+      this.listingContent.push(`summaryLabel:  \`${this.imageListJSON.controls["summaryLabel"].value}\`,`) ;
+      alert(`${JSON.stringify(this.listingContent)}`) ;
+    }
+   // summaryLabel:'
     this.listingContent.push(`${this.imageListJSON.controls["fileName"].value}`);
     this.listingContent.push(`${this.imageListJSON.controls["fileDescription"].value},`);
    
@@ -209,5 +227,6 @@ get ListingContent():string[] {
      
     
     this.listingContent.push("},")
+
   }
 }

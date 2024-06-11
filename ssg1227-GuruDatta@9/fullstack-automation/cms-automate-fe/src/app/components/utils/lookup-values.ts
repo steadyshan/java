@@ -10,7 +10,7 @@ export class LookupValues {
         "Mumbai Meri Jaan", menus:  ["ganesh", "ganesh-gte-Q2-2021", "ganesh-gte-Q3-2022", "ganesh-gte-Q1-2023"]},
         
       ];
-      canvassSizes = [
+      canvassSizes:string[] = [
         'A3', 'A4', 'A5', 'soft','other'
       ];
       contentTypes = [
@@ -20,8 +20,14 @@ export class LookupValues {
         'color-pencil black-white',
         'poem black-white',
          'watercolor-pencil',
-        'poem color'
+        'poem color',
+        'soft',
       ];
+      canvassMaterial = [
+        'Watercolor paper',
+        'Plain paper',
+        'other'
+      ]
       evolutionSequences = [
         {value:'1', label: 'b4 2022'},
 

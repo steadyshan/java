@@ -15,6 +15,12 @@
                     </select>
                 </div>
                 <div>
+                    <label> Canvass Material</label><select formControlName="canvassMaterial">
+                        <option *ngFor="let canvassMaterial of canvassMaterials" >{{canvassMaterial}}</option>
+                
+                    </select>
+                </div>
+                <div>
                     <label> Sketch Type</label><select formControlName="content">
                         <option *ngFor="let contentType of contentTypes">{{contentType}}</option>
                     </select>
@@ -38,6 +44,7 @@
         File (version): <textarea  *ngIf="duplicateImage==false"[value]="ImageFiles[currentIteration]"></textarea>   
         <input readonly  *ngIf="duplicateImage==true"[value]="ImageFiles[currentIteration]"> 
         Description:<br/>
+         
         <app-multiline *ngIf="currentIteration < totalIterations" [entityName]= "ImageFiles[currentIteration]" (multiTextDone)="getIterationnMutipleText($event)"></app-multiline>
          
         </td>
